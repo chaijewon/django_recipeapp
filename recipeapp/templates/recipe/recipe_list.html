@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style type="text/css">
+        .row{
+           margin:0px auto;
+        }
+    </style>
+</head>
+<body>
+    <div style="height:50px"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- https://goodthings4me.tistory.com/92 -->
+            {% for r in list %}
+            <div class="col-md-2">
+              <div class="thumbnail">
+                <a href="../recipe_detail?no={{r.no}}">
+                  <img src={{r.poster}} alt="Lights" style="width:100%">
+                  <div class="caption">
+                      <p>{{r.title|truncatewords:15}}</p>
+                      <sub>{{r.chef}}</sub>
+                  </div>
+                </a>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="text-center">
+                 {% if curpage > 1 %}
+                 <a href=../recipe_list/?page={{curpage|add:-1}} class="btn btn-sm btn-primary">이전</a>
+                 {% endif %}
+
+                {{curpage}} page / {{totalpage}} pages
+
+                {% if curpage < totalpage %}
+                <a href=../recipe_list/?page={{curpage|add:1}} class="btn btn-sm btn-primary">다음</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
